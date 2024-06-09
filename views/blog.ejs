@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("./partials/head") %>
+
+        <title>Blog | Blogger.com</title>
+</head>
+
+<body>
+    <%- include("./partials/navbar") %>
+        <div class="container d-flex align-items-center justify-items-center flex-column">
+            <div class="w-100">
+                <h2 class="fw-bolder">
+                    <%= blog.title %>
+                </h2>
+                <div class="d-flex align-items-center gap-2 my-4">
+                    <div class="rounded-circle border border-4 border-success " style="width: 2.5rem;">
+                        <img src=<%=blog.createdBy.profileUrl %>
+                        alt=<%= blog.createdBy.fullName %>
+                            class="w-100 h-100 object-fit-cover">
+                    </div>
+                    <p class="fw-semibold m-0">
+                        <%= blog.createdBy.fullName %>
+                    </p>
+                </div>
+
+            </div>
+            <div class="rounded" style="height: 40rem;">
+                <img src=<%=blog.imgURL %> alt=<%= blog.title %> class="w-100 h-100 object-fit-cover rounded">
+            </div>
+            <pre class="container my-4" style="white-space: pre-wrap;">
+                <%= blog.content %>
+            </pre>
+        </div>
+        <div class="container">
+            <h3 class="form-label fw-semibold m-0">Comments ( <%= locals.comments.length %> ) </h3>
+            <% if (locals.user) { %>
+                <form action="/blog/comments/<%= blog._id %>" method="post" class="">
+                    <div class="my-3 d-flex align-items-center gap-4 px-3">
+
+                        <input type="text" class="form-control" placeholder="Comments..." name="comment">
+
+                        <button type="submit" class="btn btn-dark">Post</button>
+                    </div>
+                </form>
+                <% } %>
+                    
+            <%- include("./partials/comments") %>
+        </div>
+
+        <%- include("./partials/scripts") %>
+</body>
+
+</html>

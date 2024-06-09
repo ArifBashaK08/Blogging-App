@@ -1,0 +1,23 @@
+<div class="container py-2 d-flex flex-column justify-items-center align-items-center">
+    <% if (locals.comments) { %>
+        <% comments.forEach(item=> { %>
+            <hr class="w-75 border border-danger">
+            <div class="container d-flex gap-2 align-items-start">
+                <div class="rounded-circle border border-4 border-success overflow-hidden d-flex align-items-start" style="width: 3rem;">
+                    <img src=<%=item.createdBy.profileUrl %>
+                    alt=<%= item.createdBy.fullName %>
+                        class="w-100 h-100 object-fit-cover">
+                </div>
+                <div class="container">
+                    <h6 class="fw-semibold mb-2 text-secondary" style="font-size: small;">
+                        <%= item.createdBy.fullName %>
+                    </h6>
+                    <p class="m-0">
+                        <%= item.comment %>
+                    </p>
+                </div>
+                
+            </div>
+            <% }); %>
+                <% } %>
+</div>

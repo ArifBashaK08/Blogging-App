@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("./partials/head") %>
+
+        <title>Homepage | Blogger.com</title>
+</head>
+
+<body>
+    <%- include("./partials/navbar") %>
+
+        <div class="container my-3 row row-col-3 gap-4">
+            <% blogs.forEach(blog=> { %>
+                <div class="card col" style="width: 20rem;">
+                    <img src=<%=blog.imgURL %>
+                    class="card-img-top object-fit-cover" alt=<%= blog.title %> style="width: 100%; height:20rem;">
+
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <% if (blog.title.length> 25) { %>
+                                    <%= blog.title.substring(0, 25) %>...
+                                        <% } else { %>
+                                            <%= blog.title %>
+                                                <% } %>
+                            </h5>
+
+                            <p class="card-text text-wrap">
+                                <% if (blog.content.length> 100) { %>
+                                    <%= blog.content.substring(0, 100) %>...
+                                        <% } else { %>
+                                            <%= blog.content %>
+                                                <% } %>
+
+                            </p>
+                            <a href="/blog/<%= blog._id %>" class="btn btn-primary">Visit</a>
+                        </div>
+                </div>
+                <% }) %>
+        </div>
+
+        <%- include("./partials/scripts") %>
+</body>
+
+</html>
